@@ -7,7 +7,10 @@ class LargeContainer extends Component {
 		super(atom, template);
 
 		this.a.attack_hand = chain_func(this.a.attack_hand, this.attack_hand.bind(this));
+		this.a.attack_by = chain_func(this.a.attack_by, this.attack_by.bind(this));
 		this.a.c.Examine.examine = chain_func(this.a.c.Examine.examine, this.examine.bind(this));
+
+		this.a.c.MovementProxy.on("child_moved", this.child_moved.bind(this));
 
 		let do_close = false;
 		if(!this.opened) {
@@ -17,13 +20,13 @@ class LargeContainer extends Component {
 			this.opened = false;
 		}
 		process.nextTick(() => {
-			if(!do_close)
+			if(!do_close && !this.start_empty)
 				this.populate_contents();
 			if(do_close)
 				this.close();
 			else
 				this.open();
-			if(do_close)
+			if(do_close && !this.start_empty)
 				this.populate_contents();
 		});
 	}
@@ -71,7 +74,7 @@ class LargeContainer extends Component {
 	}
 
 	take_contents() {
-		for(let atom of this.a.crosses()) {
+		for(let atom of [...this.a.crosses()]) {
 			if(this.insert(atom) == -1)
 				break;
 		}
@@ -142,10 +145,30 @@ class LargeContainer extends Component {
 		prev();
 		this.toggle(user);
 	}
+
+	attack_by(prev, item, user) {
+		if(user.loc == this.a)
+			return;
+		if(this.opened) {
+			if(item.c.Item.slot && item.c.Item.slot.can_unequip()) {
+				item.glide_size = 0;
+				item.loc = this.a.fine_loc;
+				return true;
+			}
+		}
+		return prev();
+	}
+
+	child_moved(child) {
+		this.open(child);
+		if(this.opened) {
+			child.loc = this.a.fine_loc;
+		}
+	}
 }
 
-LargeContainer.depends = ["Destructible"];
-LargeContainer.loadBefore = ["Destructible"];
+LargeContainer.depends = ["Destructible", "MovementProxy"];
+LargeContainer.loadBefore = ["Destructible", "MovementProxy"];
 
 LargeContainer.template = {
 	vars: {
@@ -163,16 +186,15 @@ LargeContainer.template = {
 				allow_objects: false,
 				allow_dense: false,
 				breakout_time: 120000,
-				opened: false
+				opened: false,
+				start_empty: false
 			},
 			"Destructible": {
 				max_integrity: 200,
 				integrity_failure: 50,
 				armor: {melee: 20, bullet: 10, laser: 10, energy: 0, bomb: 10, bio: 0, rad: 0, fire: 70, acid: 60}
 			}
-		},
-		density: true,
-
+		}
 	}
 };
 
