@@ -1,5 +1,6 @@
 'use strict';
-const {Component, Sound, chain_func, format_html, visible_message, has_component} = require('bluespess');
+const {Component, Sound, Atom, chain_func, format_html, visible_message, has_component} = require('bluespess');
+const Mind = require('../mind/mind.js');
 const combat_defines = require('../../../defines/combat_defines.js');
 const mob_defines = require('../../../defines/mob_defines.js');
 const {random_zone} = require('./carbon/body_parts/helpers.js');
@@ -21,9 +22,15 @@ class LivingMob extends Component {
 		this.add_damage_type("tox");
 		this.add_damage_type("clone");
 
+		this.mind = null;
+
+		this.a.c.Mob.on("client_changed", this.client_changed.bind(this));
 		this.a.c.Mob.can_interact_with_panel = this.can_interact_with_panel.bind(this);
 		this.a.c.Tangible.experience_pressure_difference = chain_func(this.a.c.Tangible.experience_pressure_difference, this.experience_pressure_difference.bind(this));
 		this.a.c.Tangible.attacked_by = this.attacked_by.bind(this);
+		this.a.c.Tangible.on("throw_finished", this.throw_finished.bind(this));
+		this.a.c.Tangible.on("throw_impacted_by", this.throw_impacted_by.bind(this));
+		this.a.c.SpeechEmitter.build_message = chain_func(this.a.c.SpeechEmitter.build_message, this.build_message.bind(this));
 		this.a.attack_by = chain_func(this.a.attack_by, this.attack_by.bind(this));
 		this.a.can_be_crossed = chain_func(this.a.can_be_crossed, this.can_be_crossed.bind(this));
 		this.a.move = chain_func(this.a.move, this.move.bind(this));
@@ -165,9 +172,31 @@ class LivingMob extends Component {
 		return 150;
 	}
 
+	client_changed(old_client, new_client) {
+		if(new_client) {
+			if(!this.mind) {
+				let mind = new Mind(new_client.key);
+				mind.transfer_to(this.a);
+			}
+		}
+	}
+
+	ghostize(can_reenter_corpse = true) {
+		let ghost = new Atom(this.a.server, {components: ["Ghost"]});
+		ghost.loc = this.a.base_mover.fine_loc;
+		ghost.c.Ghost.mind = this.mind;
+		ghost.c.Mob.key = this.a.c.Mob.key;
+		ghost.c.Ghost.can_reenter_corpse = can_reenter_corpse;
+	}
+
 	move(prev, dx, dy, reason) {
 		if(reason != "walking")
 			return prev();
+
+		if(this.stat == combat_defines.DEAD) {
+			this.ghostize(true);
+			return;
+		}
 
 		if(this.incapacitated())
 			return;
@@ -179,6 +208,22 @@ class LivingMob extends Component {
 			return;
 		}
 		return prev();
+	}
+
+	build_message(prev) {
+		let msg = prev();
+		if(msg.message.startsWith(";")) {
+			msg.mode = "radio";
+			msg.range = 1;
+			msg.message = msg.message.substring(1);
+		}
+
+		if(this.stat >= combat_defines.UNCONSCIOUS)
+			return null;
+
+		if(!msg.message || !msg.message.length)
+			return null;
+		return msg;
 	}
 
 	incapacitated() {
@@ -196,15 +241,45 @@ class LivingMob extends Component {
 		prev();
 	}
 
-	can_be_crossed(prev, mover) {
-		if(mover.density < 1 || this.a.density < 1)
+	can_be_crossed(prev, mover, dx, dy, reason) {
+		if((mover.density < 1 || this.a.density < 1) && reason != "throw")
 			return true;
 		return prev();
+	}
+
+	throw_finished() {
+		this.a.x = Math.round(this.a.x);
+		this.a.y = Math.round(this.a.y);
 	}
 
 	attack_by(prev, item, user) {
 		user.c.MobInteract.change_next_move(combat_defines.CLICK_CD_MELEE);
 		return prev() || item.c.Item.attack(this.a, user);
+	}
+
+	throw_impacted_by(item) {
+		if(!has_component(item, "Item")) {
+			new Sound(this.a.server, {path: 'sound/weapons/genhit.ogg', volume: 0.5, vary: true}).emit_from(this.a);
+			return;
+		}
+		let zone = random_zone("chest", 65);
+		let volume = 0;
+		if(item.c.Tangible.throw_force && item.c.Item.size)
+			volume = Math.min(Math.max((item.c.Tangible.throw_force + item.c.Item.size) * 0.05, 0.3), 1);
+		else if(item.c.Item.size)
+			volume = Math.min(Math.max((item.c.Item.size) * 0.08, 0.2), 1);
+		else
+			return;
+		if(item.c.Tangible.throw_force > 0) {
+			let sound = item.c.Tangible.throwhitsound || item.c.Item.hitsound || 'sound/weapons/genhit.ogg';
+			if(!item.c.Tangible.throw_force)
+				sound = 'sound/weapons/throwtap.ogg';
+			new Sound(this.a.server, {path: sound, volume, vary: true}).emit_from(this.a);
+		}
+		visible_message`<span class='danger'>The ${this.a} has been hit by the ${item}.</span class='danger'>`
+			.self`<span class='userdanger'>The ${this.a} been hit by the ${item}.</span>`
+			.emit_from(this.a);
+		this.apply_damage(item.c.Tangible.throw_force, item.c.Item.damage_type, zone);
 	}
 
 	attacked_by(item, user) {
@@ -242,8 +317,8 @@ class LivingMob extends Component {
 	}
 }
 
-LivingMob.depends = ["Mob", "Tangible", "MobInteract", "MobHud"];
-LivingMob.loadBefore = ["Mob", "Tangible", "MobInteract", "MobHud"];
+LivingMob.depends = ["Mob", "Tangible", "MobInteract", "MobHud", "SpeechHearer", "SpeechEmitter"];
+LivingMob.loadBefore = ["Mob", "Tangible", "MobInteract", "MobHud", "SpeechHearer", "SpeechEmitter"];
 
 LivingMob.template = {
 	vars: {
@@ -254,8 +329,12 @@ LivingMob.template = {
 				stat: combat_defines.CONSCIOUS,
 				nomove_counter: 0,
 				mob_size: mob_defines.MOB_SIZE_HUMAN
+			},
+			"Tangible": {
+				throw_force: 10
 			}
 		},
+		name: "",
 		density: 1
 	}
 };
