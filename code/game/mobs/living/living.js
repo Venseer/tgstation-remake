@@ -112,8 +112,10 @@ class LivingMob extends Component {
 		this.emit("stat_changed", oldstat, val);
 		if(val >= combat_defines.UNCONSCIOUS && oldstat < combat_defines.UNCONSCIOUS) {
 			this.nomove_counter++;
+			this.a.c.MobInteract.nointeract_counter++;
 		} else if(val < combat_defines.UNCONSCIOUS && oldstat >= combat_defines.UNCONSCIOUS) {
 			this.nomove_counter--;
+			this.a.c.MobInteract.nointeract_counter--;
 		}
 		if(val == combat_defines.DEAD && this.life_timeout) {
 			clearTimeout(this.life_timeout);
@@ -169,7 +171,12 @@ class LivingMob extends Component {
 	}
 
 	movement_delay() {
-		return 150;
+		if(this.a.c.MobInteract.move_mode == mob_defines.MOVE_INTENT_WALK){
+			return 400;
+		}
+		else {
+			return 150;
+		}
 	}
 
 	client_changed(old_client, new_client) {

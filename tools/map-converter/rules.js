@@ -73,6 +73,9 @@ let rules = [
 	}],
 	["/obj/structure/table", () => {return {template_name: "table"};}],
 	["/obj/structure/table/wood", () => {return {template_name: "wood_table"};}],
+	["/obj/structure/table/reinforced", () => {return {template_name: "reinforced_table"};}],
+
+	["/obj/structure/chair", (inst) => {return {template_name: "chair", variant_leaf_path: [inst_dir(inst)]};}],
 
 	["/obj/structure/closet", () => {return {template_name: "closet"};}],
 	["/obj/structure/closet/emcloset", () => {return {template_name: "emergency_closet"};}],
@@ -89,6 +92,10 @@ let rules = [
 	["/obj/item/weldingtool", () => {return {template_name: "weldingtool"};}, {pixel_offsets: true}],
 	["/obj/item/wirecutters", () => {return {template_name: "wirecutters"};}, {pixel_offsets: true}],
 	["/obj/item/wrench", () => {return {template_name: "wrench"};}, {pixel_offsets: true}],
+
+	// WEAPONS
+
+	["/obj/item/melee/baseball_bat", () => {return {template_name: "baseball_bat"};}, {pixel_offsets: true}],
 
 	// LAMPS AND LIGHTS
 
@@ -158,6 +165,8 @@ let rules = [
 				template_name = "area_morgue";
 			else if(inst.type.path.startsWith("/area/security/detectivs_office"))
 				template_name = "area_detective";
+			else if(inst.type.path.startsWith("/area/shuttle/arrival"))
+				template_name = "area_arrivals";
 
 			let area_inst = {template_name, instance_vars: {
 				components: {
