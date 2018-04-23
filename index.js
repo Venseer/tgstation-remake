@@ -77,9 +77,16 @@ server.importModule(require('./code/modules/atmospherics/environmental/controlle
 server.importModule(require('./code/modules/atmospherics/environmental/turf.js'));
 server.importModule(require('./code/modules/client/verbs.js'));
 server.importModule(require('./code/modules/clothing/under/jobs/civilian.js'));
+server.importModule(require('./code/modules/clothing/under/jobs/engineering.js'));
+server.importModule(require('./code/modules/clothing/under/jobs/medsci.js'));
+server.importModule(require('./code/modules/clothing/under/jobs/security.js'));
 server.importModule(require('./code/modules/clothing/under/_under.js'));
 server.importModule(require('./code/modules/clothing/under/color.js'));
 server.importModule(require('./code/modules/clothing/under/miscellaneous.js'));
+server.importModule(require('./code/modules/clothing/under/pants.js'));
+server.importModule(require('./code/modules/clothing/under/shorts.js'));
+server.importModule(require('./code/modules/clothing/under/syndicate.js'));
+server.importModule(require('./code/modules/clothing/under/trek.js'));
 server.importModule(require('./code/modules/clothing/shoes/_shoes.js'));
 server.importModule(require('./code/modules/clothing/shoes/colour.js'));
 server.importModule(require('./code/modules/clothing/shoes/misc.js'));
