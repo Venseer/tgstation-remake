@@ -15,7 +15,16 @@ function loader(path) {
 	});
 }
 
-let rules = require('./rules.js');
+let rules = [];
+let rules_files = [
+	"./rules/rules.js",
+	"./rules/areas.js",
+	"./rules/clothing.js"
+];
+
+for(let rule_file of rules_files) {
+	rules.push(...require(rule_file));
+}
 
 rules.sort((a, b) => {
 	return b[0].length - a[0].length;
@@ -26,12 +35,13 @@ rules.sort((a, b) => {
 		console.log("Pass the /tg/station dme to this");
 	}
 
-
+	console.log("Parsing env...");
 	let env = await ByondEnv.parse(loader, process.argv[2]);
 	let maptext = await loader(path.join(path.dirname(process.argv[2]), `_maps${path.sep}map_files${path.sep}BoxStation${path.sep}BoxStation.dmm`));
 	let map = env.parse_map(maptext, 'map file');
 	let bsmap = {};
 	bsmap.locs = {};
+	console.log("Converting map...");
 	for(let [loc, key] of map.coords_to_key) {
 		let [x,y,z] = JSON.parse(loc);
 		x -= 113;
@@ -45,7 +55,7 @@ rules.sort((a, b) => {
 				if(!props) props = {};
 				if(!oi.type.path.startsWith(rulekey))
 					continue;
-				let result = rule(oi, env);
+				let result = rule(oi, {env, in_map: map, out_map: bsmap});
 				if(result === undefined)
 					continue;
 				else if(result === null)
