@@ -418,7 +418,24 @@ Object.assign(Inaprovaline.prototype, {
 	color: [0.78,0.65,0.86]
 });
 
-class Tricordrazine extends Medicine {} // /datum/reagent/medicine/tricordrazine
+class Tricordrazine extends Medicine { // /datum/reagent/medicine/tricordrazine
+	mob_life(dt) {
+		if(Math.random() < 0.8) {
+			this.holder.c.LivingMob.adjust_damage("brute", -0.5 * dt);
+			this.holder.c.LivingMob.adjust_damage("burn", -0.5 * dt);
+			this.holder.c.LivingMob.adjust_damage("oxy", -0.5 * dt);
+			this.holder.c.LivingMob.adjust_damage("tox", -0.5 * dt);
+		}
+		super.mob_life(...arguments);
+	}
+	overdose_process(dt) {
+		this.holder.c.LivingMob.adjust_damage("brute", 1 * dt);
+		this.holder.c.LivingMob.adjust_damage("burn", 1 * dt);
+		this.holder.c.LivingMob.adjust_damage("oxy", 1 * dt);
+		this.holder.c.LivingMob.adjust_damage("tox", 1 * dt);
+		super.overdose_process(...arguments);
+	}
+}
 module.exports.reagents.Tricordrazine = Tricordrazine;
 Object.assign(Tricordrazine.prototype, {
 	name: "Tricordrazine",
