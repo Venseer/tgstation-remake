@@ -1,6 +1,7 @@
 'use strict';
 const {Component, has_component, Sound, visible_message, to_chat} = require('bluespess');
 const combat_defines = require('../../defines/combat_defines.js');
+const sounds = require('../../defines/sounds.js');
 
 class Gun extends Component {
 	constructor(atom, template) {
@@ -80,7 +81,7 @@ class Gun extends Component {
 			return false;
 		}
 		this.process_chamber();
-
+		this.update_icon();
 		return true;
 	}
 
@@ -121,6 +122,8 @@ class Gun extends Component {
 	can_shoot() {
 		return true;
 	}
+
+	update_icon() {}
 }
 
 Gun.loadBefore = ["Item"];
@@ -130,10 +133,8 @@ Gun.template = {
 	vars: {
 		components: {
 			"Gun": {
-				fire_sound: "gunshot",
+				fire_sound: sounds.gunshot,
 				suppressed: null,
-				can_suppress: false,
-				can_unsuppress: true,
 				recoil: 0,
 				clumsy_check: true,
 				trigger_guard: combat_defines.TRIGGER_GUARD_NORMAL,

@@ -7,11 +7,12 @@
 
 module.exports.templates = {
 	"mag_m10mm": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "10mm",
+					form_factor: "pistol",
 					ammo_type: "casing_c10mm",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -27,11 +28,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m10mm"]
 	},
 	"mag_m10mm_rifle": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "10mm",
+					form_factor: "pistol",
 					ammo_type: "casing_c10mm",
 					max_ammo: 10,
 					multiple_sprites: 2
@@ -47,11 +49,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m10mm/rifle"]
 	},
 	"mag_m10mm_fire": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "10mm",
+					form_factor: "pistol",
 					ammo_type: "casing_c10mm_inc",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -67,11 +70,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m10mm/fire"]
 	},
 	"mag_m10mm_hp": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "10mm",
+					form_factor: "pistol",
 					ammo_type: "casing_c10mm_hp",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -87,11 +91,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m10mm/hp"]
 	},
 	"mag_m10mm_ap": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "10mm",
+					form_factor: "pistol",
 					ammo_type: "casing_c10mm_ap",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -107,11 +112,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m10mm/ap"]
 	},
 	"mag_m45": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: ".45",
+					form_factor: "pistol",
 					ammo_type: "casing_c45",
 					max_ammo: 8
 				},
@@ -122,11 +128,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m45"]
 	},
 	"mag_wt550m9": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "4.6x30mm",
+					form_factor: "pistol",
 					ammo_type: "casing_c46x30mm",
 					max_ammo: 20,
 					ammo_mod: 4,
@@ -139,11 +146,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/wt550m9"]
 	},
 	"mag_wt550m9_wtap": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "4.6x30mm",
+					form_factor: "pistol",
 					ammo_type: "casing_c46x30mm_ap",
 					max_ammo: 20,
 					ammo_mod: 4,
@@ -156,11 +164,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/wt550m9/wtap"]
 	},
 	"mag_wt550m9_wtic": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "4.6x30mm",
+					form_factor: "pistol",
 					ammo_type: "casing_c46x30mm_inc",
 					max_ammo: 20,
 					ammo_mod: 4,
@@ -173,11 +182,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/wt550m9/wtic"]
 	},
 	"mag_uzim9mm": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "9mm",
+					form_factor: "uzi",
 					ammo_type: "casing_c9mm",
 					max_ammo: 32,
 					ammo_mod: 4,
@@ -190,11 +200,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/uzim9mm"]
 	},
 	"mag_smgm9mm": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "9mm",
+					form_factor: "smg",
 					ammo_type: "casing_c9mm",
 					max_ammo: 21
 				},
@@ -205,11 +216,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/smgm9mm"]
 	},
 	"mag_smgm9mm_ap": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "9mm",
+					form_factor: "smg",
 					ammo_type: "casing_c9mm_ap",
 					max_ammo: 21
 				},
@@ -220,11 +232,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/smgm9mm/ap"]
 	},
 	"mag_smgm9mm_fire": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "9mm",
+					form_factor: "smg",
 					ammo_type: "casing_c9mm_inc",
 					max_ammo: 21
 				},
@@ -235,11 +248,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/smgm9mm/fire"]
 	},
 	"mag_pistolm9mm": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "9mm",
+					form_factor: "smg",
 					ammo_type: "casing_c9mm",
 					max_ammo: 15
 				},
@@ -250,11 +264,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/pistolm9mm"]
 	},
 	"mag_smgm45": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: ".45",
+					form_factor: "smg",
 					ammo_type: "casing_c45_nostamina",
 					max_ammo: 24,
 					ammo_mod: 2,
@@ -268,11 +283,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/smgm45"]
 	},
 	"mag_tommygunm45": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: ".45",
+					form_factor: "pistol",
 					ammo_type: "casing_c45",
 					max_ammo: 50
 				},
@@ -283,11 +299,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/tommygunm45"]
 	},
 	"mag_m50": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: ".50",
+					form_factor: "pistol",
 					ammo_type: "casing_a50ae",
 					max_ammo: 7,
 					multiple_sprites: 1
@@ -300,11 +317,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m50"]
 	},
 	"mag_m75": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "75",
+					form_factor: "pistol",
 					ammo_type: "caseless_a75",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -316,11 +334,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m75"]
 	},
 	"mag_m556": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "a556",
+					form_factor: "toploader",
 					ammo_type: "casing_a556",
 					max_ammo: 30,
 					multiple_sprites: 2
@@ -333,11 +352,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m556"]
 	},
 	"mag_m12g": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "shotgun",
+					form_factor: "shotgun",
 					ammo_type: "casing_shotgun_stunslug",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -350,11 +370,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m12g"]
 	},
 	"mag_m12g_buckshot": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "shotgun",
+					form_factor: "shotgun",
 					ammo_type: "casing_shotgun_buckshot",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -367,11 +388,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m12g/buckshot"]
 	},
 	"mag_m12g_slug": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "shotgun",
+					form_factor: "shotgun",
 					ammo_type: "casing_shotgun",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -384,11 +406,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m12g/slug"]
 	},
 	"mag_m12g_dragon": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "shotgun",
+					form_factor: "shotgun",
 					ammo_type: "casing_shotgun_dragonsbreath",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -401,11 +424,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m12g/dragonsbreath"]
 	},
 	"mag_m12g_bioterror": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "shotgun",
+					form_factor: "shotgun",
 					ammo_type: "casing_shotgun_dart_bioterror",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -418,11 +442,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m12g/bioterror"]
 	},
 	"mag_m12g_meteor": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "shotgun",
+					form_factor: "shotgun",
 					ammo_type: "casing_shotgun_meteorslug",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -435,11 +460,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/m12g/meteor"]
 	},
 	"mag_sniper_rounds": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: ".50",
+					form_factor: "sniper",
 					ammo_type: "casing_p50",
 					max_ammo: 6,
 					multiple_sprites: 2
@@ -452,11 +478,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/sniper_rounds"]
 	},
 	"mag_sniper_rounds_soporific": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: ".50",
+					form_factor: "sniper",
 					ammo_type: "casing_p50_soporific",
 					max_ammo: 3,
 					multiple_sprites: 2
@@ -472,11 +499,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/sniper_rounds/soporific"]
 	},
 	"mag_sniper_rounds_penetrator": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: ".50",
+					form_factor: "sniper",
 					ammo_type: "casing_p50_penetrator",
 					max_ammo: 5,
 					multiple_sprites: 2
@@ -492,11 +520,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/sniper_rounds/penetrator"]
 	},
 	"mag_mm195x129": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "mm195129",
+					form_factor: "smg",
 					ammo_type: "casing_mm195x129",
 					max_ammo: 50,
 					ammo_mod: 10,
@@ -510,11 +539,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/mm195x129"]
 	},
 	"mag_mm195x129_hp": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "mm195129",
+					form_factor: "smg",
 					ammo_type: "casing_mm195x129_hp",
 					max_ammo: 50,
 					ammo_mod: 10,
@@ -528,11 +558,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/mm195x129/hp"]
 	},
 	"mag_mm195x129_ap": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "mm195129",
+					form_factor: "smg",
 					ammo_type: "casing_mm195x129_ap",
 					max_ammo: 50,
 					ammo_mod: 10,
@@ -546,11 +577,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/mm195x129/ap"]
 	},
 	"mag_mm195x129_inc": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "mm195129",
+					form_factor: "smg",
 					ammo_type: "casing_mm195x129_inc",
 					max_ammo: 50,
 					ammo_mod: 10,
@@ -564,11 +596,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/mm195x129/inc"]
 	},
 	"mag_toy": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "foam_force",
+					form_factor: "foam_force",
 					ammo_type: "caseless_foam_dart"
 				},
 			},
@@ -577,11 +610,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/toy"]
 	},
 	"mag_toy_smg": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "foam_force",
+					form_factor: "foam_force",
 					ammo_type: "caseless_foam_dart",
 					max_ammo: 20,
 					multiple_sprites: 2
@@ -593,11 +627,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/toy/smg"]
 	},
 	"mag_toy_smg_riot": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "foam_force",
+					form_factor: "foam_force",
 					ammo_type: "caseless_foam_dart_riot",
 					max_ammo: 20,
 					multiple_sprites: 2
@@ -609,11 +644,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/toy/smg/riot"]
 	},
 	"mag_toy_pistol": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "foam_force",
+					form_factor: "foam_force",
 					ammo_type: "caseless_foam_dart",
 					max_ammo: 8,
 					multiple_sprites: 2
@@ -625,11 +661,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/toy/pistol"]
 	},
 	"mag_toy_smgm45": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "foam_force",
+					form_factor: "foam_force",
 					ammo_type: "caseless_foam_dart",
 					max_ammo: 20,
 					ammo_mod: 2,
@@ -642,11 +679,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/toy/smgm45"]
 	},
 	"mag_toy_smgm45_riot": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "foam_force",
+					form_factor: "foam_force",
 					ammo_type: "caseless_foam_dart_riot",
 					max_ammo: 20,
 					ammo_mod: 2,
@@ -659,11 +697,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/toy/smgm45/riot"]
 	},
 	"mag_toy_m762": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "foam_force",
+					form_factor: "foam_force",
 					ammo_type: "caseless_foam_dart",
 					max_ammo: 50
 				},
@@ -673,11 +712,12 @@ module.exports.templates = {
 		tree_paths: ["items/ammo_box/magazine/toy/m762"]
 	},
 	"mag_toy_m762_riot": {
-		components: ["AmmoBox"],
+		components: ["GunMagazine"],
 		vars: {
 			components: {
 				"AmmoBox": {
 					caliber: "foam_force",
+					form_factor: "foam_force",
 					ammo_type: "caseless_foam_dart_riot",
 					max_ammo: 50
 				},

@@ -26,6 +26,7 @@ class CarbonMob extends Component.Networked {
 			}
 			return true;
 		});
+		this.add_networked_var("jitteriness");
 
 		this.organs = {};
 		new Atom(this.a.server, 'organ_lungs').c.Organ.insert(this.a);
@@ -187,7 +188,7 @@ class CarbonMob extends Component.Networked {
 		if(has_component(this.a, "MobInventory")) {
 			if(this.lying && !old)
 				this.a.c.MobInventory.nohold_counter++;
-			else if(!old && this.lying)
+			else if(old && !this.lying)
 				this.a.c.MobInventory.nohold_counter--;
 		}
 	}
